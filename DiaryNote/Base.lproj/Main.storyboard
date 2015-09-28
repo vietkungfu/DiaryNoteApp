@@ -68,7 +68,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dJr-SD-6Qj">
                                 <rect key="frame" x="16" y="121" width="343" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日付" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swF-Qv-8Pf">
                                 <rect key="frame" x="16" y="159" width="42" height="21"/>
@@ -129,8 +129,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="h7i-1S-9xo">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="XUL-yz-svI"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="thx-nr-wOc"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="XUL-yz-svI">
+                            <connections>
+                                <segue destination="hZI-Pa-yZA" kind="unwind" unwindAction="unwindToList:" id="x9o-Kj-8Tc"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="thx-nr-wOc">
+                            <connections>
+                                <segue destination="hZI-Pa-yZA" kind="unwind" unwindAction="unwindToList:" id="5xJ-3P-OJI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="XUL-yz-svI" id="AgR-h9-8PA"/>
@@ -141,6 +149,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hks-Ic-WqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="hZI-Pa-yZA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1712.5" y="256.5"/>
         </scene>

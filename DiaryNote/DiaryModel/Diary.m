@@ -18,8 +18,8 @@
 
 @implementation Diary
 
-@synthesize DiaryDic = scopeDiaryDic;
-@synthesize DiaryList = scopeDiaryList;
+//@synthesize DiaryDic = scopeDiaryDic;
+//@synthesize DiaryList = scopeDiaryList;
 
 // -------- Max Index --------------------
 - (NSInteger *) MaxIndex{
@@ -41,12 +41,10 @@
 
 - (NSMutableDictionary *) DiaryDic{
     
-    if (!scopeDiaryDic) {
-        scopeDiaryDic = [NSMutableDictionary dictionary];
-    }
-    
+    if (scopeDiaryDic == nil) {
+        
     // Load data from plist
-    if ([[scopeDiaryDic allKeys] count] == 0) {
+    //if ([[scopeDiaryDic allKeys] count] == 0) {
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectoryPath = [paths objectAtIndex:0];
@@ -56,7 +54,11 @@
         NSKeyedUnarchiver *decoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
         scopeDiaryDic = [decoder decodeObjectForKey:DIARY_TAG];
         
+        if (scopeDiaryDic == nil) {
+            scopeDiaryDic = [NSMutableDictionary dictionary];
+        }
     }
+    
     return scopeDiaryDic;
     
 }
@@ -70,9 +72,9 @@
     BOOL returnValue = true;
     
     @try {
-        for(NSString *key in scopeDiaryDic){
+        for(NSString *key in self.DiaryDic){
             if([key isEqualToString:_key]){
-                [scopeDiaryDic removeObjectForKey:key];
+                [self.DiaryDic removeObjectForKey:key];
             }
         }
     }
@@ -85,14 +87,14 @@
     
 }
 
-- (BOOL) addDictionaryIntoDiaryDic:(NSDictionary *) _dic withKey:(NSString *) _key{
+- (BOOL) addDictionaryIntoDiaryDic:(NSMutableDictionary *) _dic withKey:(NSString *) _key{
     
     BOOL returnValue = true;
     
     @try{
         
-        [scopeDiaryDic setObject:_dic forKey:_key];
-        
+        [self.DiaryDic setObject:_dic forKey:_key];
+        [self writeToFile];
     }@catch (NSException *e){
         NSLog(@"Exception: %@", e);
         returnValue = false;
@@ -101,16 +103,16 @@
     return returnValue;
 }
 
--(BOOL) updateDictionaryForKeyOfDiaryDic:(NSDictionary *) _dic withKey:(NSString *) _key{
+-(BOOL) updateDictionaryForKeyOfDiaryDic:(NSMutableDictionary *) _dic withKey:(NSString *) _key{
     
     BOOL returnValue = true;
     BOOL itemFoundFlag = false;
     
     @try {
-        for (NSString * key in scopeDiaryDic)
+        for (NSString * key in self.DiaryDic )
         {
             if([key isEqualToString:_key]){
-                scopeDiaryDic[key] = _dic;
+                self.DiaryDic[key] = _dic;
                 itemFoundFlag = true;
             }
         }
@@ -131,9 +133,9 @@
     
     BOOL returnValue = false;
     
-    for (NSString * key in scopeDiaryDic){
+    for (NSString * key in self.DiaryDic){
         
-        NSDictionary * dic = scopeDiaryDic[key];
+        NSMutableDictionary * dic = self.DiaryDic[key];
         NSString * date = [dic objectForKey:DATE_TAG];
         
         if([date isEqualToString:_date])
@@ -153,22 +155,50 @@
     return [dateFormat stringFromDate:_date];
 }
 
+// -------- Write to File ----------
+
+-(BOOL) writeToFile{
+    
+    BOOL returnValue = TRUE;
+    
+    @try
+    {
+        //self.DiaryDic = _dicData;
+        
+        NSMutableData *data = [NSMutableData data];
+        
+        NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+        
+        [archiver encodeObject:self.DiaryDic forKey:DIARY_TAG];
+        [archiver finishEncoding];
+        
+        NSArray * path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString * documentsDirectoryPath = [path objectAtIndex:0];
+        NSString * filePath = [documentsDirectoryPath stringByAppendingPathComponent:DIARY_FILENAME];
+        
+        [data writeToFile:filePath atomically:YES];
+    }@catch(NSException * ex){
+        NSLog(@"Exception: %@", ex);
+        returnValue = FALSE;
+    }
+    return returnValue;
+}
+
 // -------- Diary List -------------
 
 -(NSMutableArray *) DiaryList{
-    if(!scopeDiaryList){
+    
+    if(scopeDiaryList == nil){
         scopeDiaryList = [NSMutableArray array];
     }
     
-    if(scopeDiaryList.count == 0)
-    {
-        for (NSString* key in self.DiaryDic) {
-            
-            NSDictionary * dic = [self.DiaryDic objectForKey:key];
-            [dic setValue:key forKey:ITEM_KEY_TAG];
-            
-            [scopeDiaryList setValuesForKeysWithDictionary:dic];
-        }
+    for (NSString* key in self.DiaryDic) {
+        
+        //NSMutableDictionary * dic = [self.DiaryDic objectForKey:key];
+        //[dic setValue:key forKey:ITEM_KEY_TAG];
+        
+        [scopeDiaryList setValuesForKeysWithDictionary:[self.DiaryDic objectForKey:key]];
+        
     }
     
     return scopeDiaryList;

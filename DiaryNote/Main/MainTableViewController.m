@@ -79,7 +79,6 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
     
     NSString * cellIdentifier = [[NSString alloc] initWithString:[self.cellNameList objectAtIndex:indexPath.section]];
     NSString * cellTag =[[NSString alloc] initWithString:[self.cellTagList objectAtIndex:indexPath.section]];
@@ -90,16 +89,16 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    NSDictionary* diaryData = [diary.DiaryList objectAtIndex:indexPath.row];
+    NSMutableDictionary* diaryData = [diary.DiaryList objectAtIndex:indexPath.row];
     cell.textLabel.text = [diaryData objectForKey:cellTag];
     cell.textLabel.textColor = [UIColor blackColor];
     cell.textLabel.numberOfLines = 0;
     
-    if ([cellIdentifier isEqualToString:TITLE_TAG]) {
+    if ([cellIdentifier isEqualToString:TITLE_CELL]) {
         
-    }else if([cellIdentifier isEqualToString:DATE_TAG]){
+    }else if([cellIdentifier isEqualToString:DATE_CELL]){
         
-    }else if([cellIdentifier isEqualToString:ITEM_KEY_TAG]){
+    }else if([cellIdentifier isEqualToString:ITEM_KEY_CELL]){
         cell.hidden = true;
     }
     
@@ -107,8 +106,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //NSDictionary* rssData = [self.rssDataListArray objectAtIndex:indexPath.row];
-    //if ([rssData objectForKey:@"link"]) {
+    
     DiaryViewController* viewController = [[DiaryViewController alloc]initWithNibName:@"DiaryViewController" bundle:nil];
     //viewController.rssLinkUrl = [rssData objectForKey:@"link"];
     //viewController.rssLinkTitle = [rssData objectForKey:@"title"];
@@ -166,17 +164,21 @@
 
 - (IBAction) unwindToList:(UIStoryboardSegue *)segue{
     
+    
     PresentViewController * source = [segue sourceViewController];
     
     DiarySpec *diarySpec = source.diaryReturn;
     
     if(diarySpec != nil){
         
-        if (source.viewMode == 0) {
-            [self.diary addDictionaryIntoDiaryDic:nil withKey:nil];
-        }else{
-            [self.diary updateDictionaryForKeyOfDiaryDic:nil withKey:nil];
-        }
+        NSMutableDictionary* diaryData = [NSMutableDictionary dictionary];
+        [diaryData setObject:diarySpec.title forKey:TITLE_TAG];
+        [diaryData setObject:diarySpec.date forKey:DATE_TAG];
+        [diaryData setObject:diarySpec.note forKey:DESCRIPTION_TAG];
+
+        [self.diary
+         addDictionaryIntoDiaryDic:diaryData
+         withKey:[NSString stringWithFormat:@"%d",(int)(self.diary.MaxIndex + 1)]];
         
         [self.tableView reloadData];
     }

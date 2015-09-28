@@ -14,10 +14,10 @@
 
 @property (strong, nonatomic) NSMutableDictionary *DiaryDic;
 
-//@property (assign, nonatomic) NSInteger * MaxIndex;
+@property (assign, nonatomic) NSInteger * MaxIndex;
 
-- (BOOL) updateDictionaryForKeyOfDiaryDic:(NSDictionary *) _dic withKey:(NSString *) _key;
-- (BOOL) addDictionaryIntoDiaryDic:(NSDictionary *) _dic withKey:(NSString *) _key;
+- (BOOL) updateDictionaryForKeyOfDiaryDic:(NSMutableDictionary *) _dic withKey:(NSString *) _key;
+- (BOOL) addDictionaryIntoDiaryDic:(NSMutableDictionary *) _dic withKey:(NSString *) _key;
 - (BOOL) removeDictionaryForKeyOfDiaryDic:(NSString *)_key;
 - (BOOL) isDateExisted:(NSString *)_date;
 - (NSString *) generateDateValue:(NSDate *) _date;
