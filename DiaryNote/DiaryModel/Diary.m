@@ -22,15 +22,15 @@
 //@synthesize DiaryList = scopeDiaryList;
 
 // -------- Max Index --------------------
-- (NSInteger *) MaxIndex{
+- (int) MaxIndex{
     
-    NSInteger * maxIndex = 0;
+    int maxIndex = 0;
     
     for (NSString * key in scopeDiaryDic){
-        NSInteger indexKey = [key integerValue];
-        if(&indexKey > maxIndex)
+        int indexKey = [key intValue];
+        if(indexKey > maxIndex)
         {
-            maxIndex = &indexKey;
+            maxIndex = indexKey;
         }
     }
     
@@ -129,16 +129,16 @@
     return returnValue;
 }
 
-- (BOOL) isDateExisted:(NSString *)_date{
+- (BOOL) isDateExisted:(NSDate *)_date{
     
     BOOL returnValue = false;
     
     for (NSString * key in self.DiaryDic){
         
         NSMutableDictionary * dic = self.DiaryDic[key];
-        NSString * date = [dic objectForKey:DATE_TAG];
+        NSDate * date = [dic objectForKey:DATE_TAG];
         
-        if([date isEqualToString:_date])
+        if([[self generateDateValue:date] isEqualToString:[self generateDateValue:_date]])
         {
             returnValue = true;
             break;
@@ -151,6 +151,13 @@
 - (NSString *) generateDateValue:(NSDate *) _date{
     NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:DATE_FORMAT];
+    
+    return [dateFormat stringFromDate:_date];
+}
+
+- (NSString *) generateViewDateValue:(NSDate *) _date{
+    NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:DATE_VIEW_FORMAT];
     
     return [dateFormat stringFromDate:_date];
 }
@@ -168,6 +175,8 @@
         NSMutableData *data = [NSMutableData data];
         
         NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+        
+        //self.DiaryDic = [NSMutableDictionary dictionary];
         
         [archiver encodeObject:self.DiaryDic forKey:DIARY_TAG];
         [archiver finishEncoding];
@@ -188,16 +197,16 @@
 
 -(NSMutableArray *) DiaryList{
     
-    if(scopeDiaryList == nil){
+    //if(scopeDiaryList == nil){
         scopeDiaryList = [NSMutableArray array];
-    }
+    //}
     
     for (NSString* key in self.DiaryDic) {
         
         //NSMutableDictionary * dic = [self.DiaryDic objectForKey:key];
         //[dic setValue:key forKey:ITEM_KEY_TAG];
         
-        [scopeDiaryList setValuesForKeysWithDictionary:[self.DiaryDic objectForKey:key]];
+        [scopeDiaryList addObject:[self.DiaryDic objectForKey:key]];
         
     }
     

@@ -18,9 +18,9 @@ NSString * const TITLE_TAG = @"Title";
 NSString * const DATE_TAG = @"Date";
 NSString * const DESCRIPTION_TAG = @"Description";
 
-NSString * const TITLE_CELL = @"titleCell" ;
-NSString * const DATE_CELL =@"dateCell" ;
-NSString * const ITEM_KEY_CELL =@"itemKeyCell" ;
+//NSString * const TITLE_CELL = @"titleCell" ;
+//NSString * const DATE_CELL =@"dateCell" ;
+//NSString * const ITEM_KEY_CELL =@"itemKeyCell" ;
 
 
 NSString * const EDIT_ITEM = @"編集";
@@ -32,7 +32,11 @@ NSString * const DIARY_EDIT_SCREEN = @"日記編集";
 NSString * const MAIN_SCREEN = @"日記";
 
 NSString * const DATE_FORMAT = @"yyyyMMdd";
+NSString * const DATE_VIEW_FORMAT = @"yyyy/MM/dd";
 
 NSString * const VIEW_DIARY_ACTION = @"viewDiary";
+
+NSString * const MODE_CREATE = @"Create";
+NSString * const MODE_EDIT = @"Edit";
 
 @end

@@ -17,8 +17,8 @@
 
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
 @property (nonatomic, strong) Diary * diary;
-@property (nonatomic, strong) NSMutableArray * cellNameList;
-@property (nonatomic, strong) NSMutableArray * cellTagList;
+//@property (nonatomic, strong) NSMutableArray * cellNameList;
+//@property (nonatomic, strong) NSMutableArray * cellTagList;
 
 @end
 
@@ -26,29 +26,29 @@
 
 @synthesize diary;
 
-- (NSMutableArray *)cellNameList{
-    if(!_cellNameList){
-        _cellNameList = [NSMutableArray array];
-        
-        [_cellNameList addObject:TITLE_CELL];
-        [_cellNameList addObject:DATE_CELL];
-        [_cellNameList addObject:ITEM_KEY_CELL];
-    }
-    
-    return _cellNameList;
-}
-
-- (NSMutableArray *)cellTagList{
-    
-    if(!_cellTagList){
-        _cellTagList = [NSMutableArray array];
-        [_cellTagList addObject:TITLE_TAG];
-        [_cellTagList addObject:DATE_TAG];
-        [_cellTagList addObject:ITEM_KEY_TAG];
-    }
-    
-    return _cellTagList;
-}
+//- (NSMutableArray *)cellNameList{
+//    if(!_cellNameList){
+//        _cellNameList = [NSMutableArray array];
+//        
+//        [_cellNameList addObject:TITLE_CELL];
+//        [_cellNameList addObject:DATE_CELL];
+//        [_cellNameList addObject:ITEM_KEY_CELL];
+//    }
+//    
+//    return _cellNameList;
+//}
+//
+//- (NSMutableArray *)cellTagList{
+//    
+//    if(!_cellTagList){
+//        _cellTagList = [NSMutableArray array];
+//        [_cellTagList addObject:TITLE_TAG];
+//        [_cellTagList addObject:DATE_TAG];
+//        [_cellTagList addObject:ITEM_KEY_TAG];
+//    }
+//    
+//    return _cellTagList;
+//}
 
 
 - (void)viewDidLoad {
@@ -68,7 +68,8 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //
     // Return the number of sections.
-    return [self.cellNameList count];
+    //return [self.cellNameList count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -80,27 +81,31 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString * cellIdentifier = [[NSString alloc] initWithString:[self.cellNameList objectAtIndex:indexPath.section]];
-    NSString * cellTag =[[NSString alloc] initWithString:[self.cellTagList objectAtIndex:indexPath.section]];
-    
+    //NSString * cellIdentifier = [[NSString alloc] initWithString:[self.cellNameList objectAtIndex:indexPath.section]];
+    //NSString * cellTag =[[NSString alloc] initWithString:[self.cellTagList objectAtIndex:indexPath.section]];
+    NSString * cellIdentifier = @"Cell";
+    //cellTag = @"";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier] ;
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
     
     NSMutableDictionary* diaryData = [diary.DiaryList objectAtIndex:indexPath.row];
-    cell.textLabel.text = [diaryData objectForKey:cellTag];
+    cell.textLabel.text = [diaryData objectForKey:TITLE_TAG];
+    cell.detailTextLabel.text = [self.diary generateViewDateValue:[diaryData objectForKey:DATE_TAG]];
+
     cell.textLabel.textColor = [UIColor blackColor];
-    cell.textLabel.numberOfLines = 0;
+    //cell.textLabel.numberOfLines = 0;
     
-    if ([cellIdentifier isEqualToString:TITLE_CELL]) {
-        
-    }else if([cellIdentifier isEqualToString:DATE_CELL]){
-        
-    }else if([cellIdentifier isEqualToString:ITEM_KEY_CELL]){
-        cell.hidden = true;
-    }
+    //if ([cellIdentifier isEqualToString:TITLE_CELL]) {
+    //    cell.textLabel.text = [diaryData objectForKey:cellTag];
+    //}else if([cellIdentifier isEqualToString:DATE_CELL]){
+    //    cell.textLabel.text = [self.diary generateViewDateValue:[diaryData objectForKey:cellTag]];
+    //}else if([cellIdentifier isEqualToString:ITEM_KEY_CELL]){
+    //    cell.textLabel.text = [diaryData objectForKey:cellTag];
+    //    cell.hidden = true;
+    //}
     
     return cell;
 }
@@ -156,8 +161,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:VIEW_DIARY_ACTION]) {
         
-        [[segue destinationViewController] setDiary:self.diary];
-        [[segue destinationViewController] setViewMode: 0];
+        PresentViewController * viewController =
+        (PresentViewController *)[[segue destinationViewController] topViewController];
+        
+        [viewController setDiary:self.diary];
+        [viewController setViewMode: MODE_CREATE];
+
     }
 }
 
@@ -172,13 +181,17 @@
     if(diarySpec != nil){
         
         NSMutableDictionary* diaryData = [NSMutableDictionary dictionary];
+        
+        NSString * itemKey = [NSString stringWithFormat:@"%d",self.diary.MaxIndex + 1];
+        
+        [diaryData setObject:itemKey forKey:ITEM_KEY_TAG];
         [diaryData setObject:diarySpec.title forKey:TITLE_TAG];
         [diaryData setObject:diarySpec.date forKey:DATE_TAG];
         [diaryData setObject:diarySpec.note forKey:DESCRIPTION_TAG];
 
         [self.diary
          addDictionaryIntoDiaryDic:diaryData
-         withKey:[NSString stringWithFormat:@"%d",(int)(self.diary.MaxIndex + 1)]];
+         withKey:itemKey];
         
         [self.tableView reloadData];
     }

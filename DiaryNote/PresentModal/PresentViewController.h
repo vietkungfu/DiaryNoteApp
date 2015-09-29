@@ -13,8 +13,8 @@
 
 @interface PresentViewController : UIViewController
 
-@property(assign, nonatomic) DiaryPresentViewMode *viewMode;
-@property(assign, nonatomic) Diary * diary;
+@property (copy, nonatomic) NSString *viewMode;
+@property (strong, nonatomic) Diary * diary;
 
 @property (weak, nonatomic) IBOutlet UITextField *diaryTitle;
 @property (weak, nonatomic) IBOutlet UIDatePicker *diaryDate;

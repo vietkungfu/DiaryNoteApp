@@ -16,9 +16,9 @@ extern NSString * const ITEM_KEY_TAG ;
 extern NSString * const TITLE_TAG ;
 extern NSString * const DATE_TAG ;
 extern NSString * const DESCRIPTION_TAG;
-extern NSString * const ITEM_KEY_CELL ;
-extern NSString * const TITLE_CELL ;
-extern NSString * const DATE_CELL ;
+//extern NSString * const ITEM_KEY_CELL ;
+//extern NSString * const TITLE_CELL ;
+//extern NSString * const DATE_CELL ;
 extern NSString * const EDIT_ITEM;
 extern NSString * const CANCEL_ITEM;
 extern NSString * const COMPLETE_ITEM;
@@ -26,8 +26,12 @@ extern NSString * const DIARY_CREATE_SCREEN;
 extern NSString * const DIARY_EDIT_SCREEN;
 extern NSString * const MAIN_SCREEN;
 extern NSString * const DATE_FORMAT;
+extern NSString * const DATE_VIEW_FORMAT;
 
 extern NSString * const VIEW_DIARY_ACTION;
+
+extern NSString * const MODE_EDIT;
+extern NSString * const MODE_CREATE;
 
 typedef enum {
     Create,

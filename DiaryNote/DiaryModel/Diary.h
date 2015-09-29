@@ -14,13 +14,14 @@
 
 @property (strong, nonatomic) NSMutableDictionary *DiaryDic;
 
-@property (assign, nonatomic) NSInteger * MaxIndex;
+@property (assign, nonatomic) int MaxIndex;
 
 - (BOOL) updateDictionaryForKeyOfDiaryDic:(NSMutableDictionary *) _dic withKey:(NSString *) _key;
 - (BOOL) addDictionaryIntoDiaryDic:(NSMutableDictionary *) _dic withKey:(NSString *) _key;
 - (BOOL) removeDictionaryForKeyOfDiaryDic:(NSString *)_key;
-- (BOOL) isDateExisted:(NSString *)_date;
+- (BOOL) isDateExisted:(NSDate *)_date;
 - (NSString *) generateDateValue:(NSDate *) _date;
+- (NSString *) generateViewDateValue:(NSDate *) _date;
 
 
 @end

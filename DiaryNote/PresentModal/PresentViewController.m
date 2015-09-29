@@ -14,7 +14,7 @@
 
 @implementation PresentViewController
 
-@synthesize diary;
+//@synthesize diary, viewMode;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +36,7 @@
     if(sender != self.finishButton){
         return;
     }
-    
+
     if(self.diaryDate != nil){
         self.diaryReturn = [[DiarySpec alloc] init];
         [self.diaryReturn setTitle:self.diaryTitle.text];
@@ -45,5 +45,23 @@
     }
 }
 
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if(sender == self.finishButton)
+    {
+        if( self.diaryDate == nil || [self.diary isDateExisted:self.diaryDate.date])
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message"
+                                                            message:@"Date is existed !! Please input again..."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil,nil];
+            [alert show];
+            
+            return FALSE;
+        }
+    }
+    return YES;
+}
 
 @end

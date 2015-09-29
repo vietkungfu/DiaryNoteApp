@@ -14,14 +14,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fSp-R2-Yfq">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gUi-X1-YuT">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fSp-R2-Yfq" id="Fqu-uK-N4P">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gUi-X1-YuT" id="aPB-fr-63w">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="tNF-rp-TIb" kind="show" identifier="viewDiary" id="E4G-SI-jXE"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -33,7 +31,7 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="N9v-Ly-kJC"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="MUi-Cc-xLK">
                             <connections>
-                                <segue destination="iPw-YI-2ks" kind="presentation" id="CTs-n8-W5L"/>
+                                <segue destination="iPw-YI-2ks" kind="presentation" identifier="viewDiary" id="CTs-n8-W5L"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -62,7 +60,7 @@
                                     <constraint firstAttribute="height" constant="21" id="BSP-R7-OAM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dJr-SD-6Qj">
@@ -77,7 +75,7 @@
                                     <constraint firstAttribute="height" constant="21" id="9Zs-Wb-nIc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本文" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHc-bf-yUK">
@@ -87,7 +85,7 @@
                                     <constraint firstAttribute="height" constant="21" id="dnY-0n-j16"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" misplaced="YES" selected="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="mNs-xd-noD">
@@ -162,7 +160,7 @@
                         <viewControllerLayoutGuide type="bottom" id="CVT-ch-nid"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wL6-HV-CyZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -234,6 +232,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="TbN-Nc-AXV"/>
+        <segue reference="CTs-n8-W5L"/>
     </inferredMetricsTieBreakers>
 </document>
