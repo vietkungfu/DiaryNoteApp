@@ -42,10 +42,7 @@
 - (NSMutableDictionary *) DiaryDic{
     
     if (scopeDiaryDic == nil) {
-        
-    // Load data from plist
-    //if ([[scopeDiaryDic allKeys] count] == 0) {
-        
+
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectoryPath = [paths objectAtIndex:0];
         NSString *filePath = [documentsDirectoryPath stringByAppendingPathComponent:DIARY_FILENAME];
@@ -170,8 +167,7 @@
     
     @try
     {
-        //self.DiaryDic = _dicData;
-        
+
         NSMutableData *data = [NSMutableData data];
         
         NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];

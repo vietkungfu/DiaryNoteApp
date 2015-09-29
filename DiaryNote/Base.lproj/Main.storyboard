@@ -89,7 +89,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" misplaced="YES" selected="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="mNs-xd-noD">
-                                <rect key="frame" x="16" y="188" width="343" height="133"/>
+                                <rect key="frame" x="16" y="188" width="343" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="133" id="j2Q-zb-bC0"/>
                                     <constraint firstAttribute="width" constant="343" id="jhn-vK-mlf"/>
@@ -151,7 +151,7 @@
             </objects>
             <point key="canvasLocation" x="1712.5" y="256.5"/>
         </scene>
-        <!--Diary View Controller-->
+        <!--日付-->
         <scene sceneID="jf6-fl-5XJ">
             <objects>
                 <viewController id="ZTO-FO-eAF" customClass="DiaryViewController" sceneMemberID="viewController">
@@ -160,21 +160,27 @@
                         <viewControllerLayoutGuide type="bottom" id="CVT-ch-nid"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wL6-HV-CyZ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xzx-Oj-Fll">
+                                <rect key="frame" x="0.0" y="94" width="375" height="184"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="wO3-TY-TpZ">
+                    <navigationItem key="navigationItem" title="日付" prompt="タイトル" id="wO3-TY-TpZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="u4N-ai-CyB">
                             <connections>
                                 <segue destination="iPw-YI-2ks" kind="presentation" id="TbN-Nc-AXV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puq-Sn-JWC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="725.5" y="1050.5"/>
+            <point key="canvasLocation" x="732.5" y="1057.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3zQ-En-3LP">
@@ -228,10 +234,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqw-eN-Hni" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="192.5" y="1050.5"/>
+            <point key="canvasLocation" x="148" y="1058"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CTs-n8-W5L"/>
+        <segue reference="TbN-Nc-AXV"/>
     </inferredMetricsTieBreakers>
 </document>

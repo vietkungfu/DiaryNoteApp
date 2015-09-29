@@ -11,8 +11,6 @@
 
 @interface MainTableViewController : UITableViewController
 
-//@property Diary *diaryItems;
-
 - (IBAction)unwindToList:(UIStoryboardSegue *) segue;
 
 @end

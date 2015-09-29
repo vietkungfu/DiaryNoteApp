@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Diary.h"
 
 @interface DiaryViewController : UIViewController
+
+@property (copy, nonatomic) NSMutableDictionary * diaryItem;
 
 @end
