@@ -197,18 +197,17 @@
 
 -(NSMutableArray *) DiaryList{
     
-    //if(scopeDiaryList == nil){
-        scopeDiaryList = [NSMutableArray array];
-    //}
+    scopeDiaryList = [NSMutableArray array];
     
     for (NSString* key in self.DiaryDic) {
-        
-        //NSMutableDictionary * dic = [self.DiaryDic objectForKey:key];
-        //[dic setValue:key forKey:ITEM_KEY_TAG];
-        
         [scopeDiaryList addObject:[self.DiaryDic objectForKey:key]];
-        
     }
+    
+    [scopeDiaryList sortUsingComparator:^NSComparisonResult(id a, id b) {
+        NSDate * date1 = [(NSMutableDictionary *)a objectForKey:DATE_TAG];
+        NSDate * date2 = [(NSMutableDictionary *)b objectForKey:DATE_TAG];
+        return [date2 compare:date1];
+    }];
     
     return scopeDiaryList;
 }
