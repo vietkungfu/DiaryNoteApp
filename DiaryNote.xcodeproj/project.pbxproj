@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F3C12CA1BBBAF8E00146FB0 /* Diary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3C12C71BBBAF8E00146FB0 /* Diary.m */; };
+		3F3C12CB1BBBAF8E00146FB0 /* PhotoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F3C12C91BBBAF8E00146FB0 /* PhotoViewCell.m */; };
+		3FAC57C71BBB71F70046EF3B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAC57C61BBB71F70046EF3B /* AssetsLibrary.framework */; };
+		3FAC57C91BBB72070046EF3B /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAC57C81BBB72070046EF3B /* Photos.framework */; };
 		3FD34CB21BB8BF3400E38E24 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD34CB11BB8BF3400E38E24 /* main.m */; };
 		3FD34CB51BB8BF3400E38E24 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD34CB41BB8BF3400E38E24 /* AppDelegate.m */; };
 		3FD34CB81BB8BF3400E38E24 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD34CB71BB8BF3400E38E24 /* ViewController.m */; };
@@ -17,7 +21,6 @@
 		3FD34CDA1BB8C51B00E38E24 /* DiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD34CD91BB8C51B00E38E24 /* DiaryViewController.m */; };
 		3FD34CDD1BB8C53000E38E24 /* PresentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD34CDC1BB8C53000E38E24 /* PresentViewController.m */; };
 		3FD34CE31BB8C5ED00E38E24 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD34CE21BB8C5ED00E38E24 /* MainTableViewController.m */; };
-		3FD34CE61BB8C91C00E38E24 /* Diary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD34CE51BB8C91C00E38E24 /* Diary.m */; };
 		3FD34CEB1BB8C9EA00E38E24 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD34CEA1BB8C9EA00E38E24 /* Constant.m */; };
 		3FD34CEE1BB8D24B00E38E24 /* DiarySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD34CED1BB8D24B00E38E24 /* DiarySpec.m */; };
 /* End PBXBuildFile section */
@@ -33,6 +36,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F3C12C61BBBAF8E00146FB0 /* Diary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Diary.h; path = Model/Diary.h; sourceTree = "<group>"; };
+		3F3C12C71BBBAF8E00146FB0 /* Diary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Diary.m; path = Model/Diary.m; sourceTree = "<group>"; };
+		3F3C12C81BBBAF8E00146FB0 /* PhotoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoViewCell.h; path = Model/PhotoViewCell.h; sourceTree = "<group>"; };
+		3F3C12C91BBBAF8E00146FB0 /* PhotoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoViewCell.m; path = Model/PhotoViewCell.m; sourceTree = "<group>"; };
+		3FAC57C61BBB71F70046EF3B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		3FAC57C81BBB72070046EF3B /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		3FD34CAC1BB8BF3400E38E24 /* DiaryNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FD34CB01BB8BF3400E38E24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FD34CB11BB8BF3400E38E24 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -52,8 +61,6 @@
 		3FD34CDC1BB8C53000E38E24 /* PresentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PresentViewController.m; path = PresentModal/PresentViewController.m; sourceTree = "<group>"; };
 		3FD34CE11BB8C5ED00E38E24 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTableViewController.h; path = Main/MainTableViewController.h; sourceTree = "<group>"; };
 		3FD34CE21BB8C5ED00E38E24 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTableViewController.m; path = Main/MainTableViewController.m; sourceTree = "<group>"; };
-		3FD34CE41BB8C91C00E38E24 /* Diary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Diary.h; path = DiaryModel/Diary.h; sourceTree = "<group>"; };
-		3FD34CE51BB8C91C00E38E24 /* Diary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Diary.m; path = DiaryModel/Diary.m; sourceTree = "<group>"; };
 		3FD34CE91BB8C9EA00E38E24 /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constant.h; path = Utility/Constant.h; sourceTree = "<group>"; };
 		3FD34CEA1BB8C9EA00E38E24 /* Constant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constant.m; path = Utility/Constant.m; sourceTree = "<group>"; };
 		3FD34CEC1BB8D24B00E38E24 /* DiarySpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiarySpec.h; path = Utility/DiarySpec.h; sourceTree = "<group>"; };
@@ -65,6 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FAC57C91BBB72070046EF3B /* Photos.framework in Frameworks */,
+				3FAC57C71BBB71F70046EF3B /* AssetsLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,11 +87,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3FAC57C51BBB6ED70046EF3B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3FAC57C81BBB72070046EF3B /* Photos.framework */,
+				3FAC57C61BBB71F70046EF3B /* AssetsLibrary.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3FD34CA31BB8BF3400E38E24 = {
 			isa = PBXGroup;
 			children = (
 				3FD34CAE1BB8BF3400E38E24 /* DiaryNote */,
 				3FD34CC81BB8BF3400E38E24 /* DiaryNoteTests */,
+				3FAC57C51BBB6ED70046EF3B /* Frameworks */,
 				3FD34CAD1BB8BF3400E38E24 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,7 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				3FD34CE81BB8C9BC00E38E24 /* Utility */,
-				3FD34CE71BB8C94700E38E24 /* DiaryModel */,
+				3FD34CE71BB8C94700E38E24 /* Model */,
 				3FD34CD71BB8C4CC00E38E24 /* DiaryView */,
 				3FD34CD61BB8C4BF00E38E24 /* PresentModal */,
 				3FD34CD51BB8C4B600E38E24 /* Main */,
@@ -169,13 +188,15 @@
 			name = DiaryView;
 			sourceTree = "<group>";
 		};
-		3FD34CE71BB8C94700E38E24 /* DiaryModel */ = {
+		3FD34CE71BB8C94700E38E24 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3FD34CE41BB8C91C00E38E24 /* Diary.h */,
-				3FD34CE51BB8C91C00E38E24 /* Diary.m */,
+				3F3C12C61BBBAF8E00146FB0 /* Diary.h */,
+				3F3C12C71BBBAF8E00146FB0 /* Diary.m */,
+				3F3C12C81BBBAF8E00146FB0 /* PhotoViewCell.h */,
+				3F3C12C91BBBAF8E00146FB0 /* PhotoViewCell.m */,
 			);
-			name = DiaryModel;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		3FD34CE81BB8C9BC00E38E24 /* Utility */ = {
@@ -292,11 +313,12 @@
 				3FD34CDD1BB8C53000E38E24 /* PresentViewController.m in Sources */,
 				3FD34CDA1BB8C51B00E38E24 /* DiaryViewController.m in Sources */,
 				3FD34CE31BB8C5ED00E38E24 /* MainTableViewController.m in Sources */,
+				3F3C12CB1BBBAF8E00146FB0 /* PhotoViewCell.m in Sources */,
+				3F3C12CA1BBBAF8E00146FB0 /* Diary.m in Sources */,
 				3FD34CB81BB8BF3400E38E24 /* ViewController.m in Sources */,
 				3FD34CB51BB8BF3400E38E24 /* AppDelegate.m in Sources */,
 				3FD34CEE1BB8D24B00E38E24 /* DiarySpec.m in Sources */,
 				3FD34CB21BB8BF3400E38E24 /* main.m in Sources */,
-				3FD34CE61BB8C91C00E38E24 /* Diary.m in Sources */,
 				3FD34CEB1BB8C9EA00E38E24 /* Constant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,6 +514,7 @@
 				3FD34CD11BB8BF3400E38E24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3FD34CD21BB8BF3400E38E24 /* Build configuration list for PBXNativeTarget "DiaryNoteTests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +523,7 @@
 				3FD34CD41BB8BF3400E38E24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

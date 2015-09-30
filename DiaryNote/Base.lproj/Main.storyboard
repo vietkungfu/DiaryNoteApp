@@ -14,12 +14,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gUi-X1-YuT">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="gUi-X1-YuT">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gUi-X1-YuT" id="aPB-fr-63w">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="tNF-rp-TIb" kind="show" identifier="viewDiary" id="6TR-bf-JqA"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -31,7 +34,7 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="N9v-Ly-kJC"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="MUi-Cc-xLK">
                             <connections>
-                                <segue destination="iPw-YI-2ks" kind="presentation" identifier="viewDiary" id="CTs-n8-W5L"/>
+                                <segue destination="iPw-YI-2ks" kind="presentation" identifier="createDiary" id="CTs-n8-W5L"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -166,6 +169,32 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xzx-Oj-Fll">
                                 <rect key="frame" x="0.0" y="94" width="375" height="184"/>
                             </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Fm-bn-gMR">
+                                <rect key="frame" x="0.0" y="278" width="375" height="68"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hzE-at-yc9">
+                                    <size key="itemSize" width="62" height="66"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="Qlg-V0-0HC">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="62" height="66"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mf4-SK-a2M">
+                                                    <rect key="frame" x="0.0" y="0.0" width="62" height="66"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -177,15 +206,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="collectionView" destination="6Fm-bn-gMR" id="TjW-fW-o3k"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puq-Sn-JWC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="732.5" y="1057.5"/>
+            <point key="canvasLocation" x="732.5" y="1090.5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Root Navigation Controller-->
         <scene sceneID="3zQ-En-3LP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oRP-dJ-liq" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oRP-dJ-liq" userLabel="Root Navigation Controller" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2I1-vN-pRh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -200,10 +232,10 @@
             </objects>
             <point key="canvasLocation" x="-502" y="257"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Present Modal Navigation Controller-->
         <scene sceneID="6o2-hh-vsQ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iPw-YI-2ks" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iPw-YI-2ks" userLabel="Present Modal Navigation Controller" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8WP-dk-pZC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -218,11 +250,12 @@
             </objects>
             <point key="canvasLocation" x="1216.5" y="256.5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--View Navigation Controller-->
         <scene sceneID="9JF-Nh-V2m">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tNF-rp-TIb" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tNF-rp-TIb" userLabel="View Navigation Controller" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="OeR-bw-P8a"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="i53-XH-rhW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -234,7 +267,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqw-eN-Hni" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="148" y="1058"/>
+            <point key="canvasLocation" x="192.5" y="1090.5"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

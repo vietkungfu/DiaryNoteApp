@@ -34,6 +34,7 @@ NSString * const MAIN_SCREEN = @"日記";
 NSString * const DATE_FORMAT = @"yyyyMMdd";
 NSString * const DATE_VIEW_FORMAT = @"yyyy/MM/dd";
 
+NSString * const CREATE_DIARY_ACTION = @"createDiary";
 NSString * const VIEW_DIARY_ACTION = @"viewDiary";
 
 NSString * const MODE_CREATE = @"Create";

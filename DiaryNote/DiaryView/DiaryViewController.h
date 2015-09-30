@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
 #import "Diary.h"
 
 @interface DiaryViewController : UIViewController
 
 @property (copy, nonatomic) NSMutableDictionary * diaryItem;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end

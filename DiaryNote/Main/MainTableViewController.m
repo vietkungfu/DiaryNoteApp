@@ -68,17 +68,11 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    DiaryViewController* viewController = [[DiaryViewController alloc]initWithNibName:@"DiaryViewController" bundle:nil];
-
-    [self.navigationController pushViewController:viewController animated:YES];
-}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:VIEW_DIARY_ACTION]) {
+    if ([[segue identifier] isEqualToString:CREATE_DIARY_ACTION]) {
         
         PresentViewController * viewController =
         (PresentViewController *)[[segue destinationViewController] topViewController];
@@ -86,6 +80,14 @@
         [viewController setDiary:self.diary];
         [viewController setViewMode: MODE_CREATE];
 
+    }else if([[segue identifier] isEqualToString:VIEW_DIARY_ACTION]){
+        
+        DiaryViewController* viewController = (DiaryViewController *)[[segue destinationViewController] topViewController];
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        viewController.diaryItem = [self.diary.DiaryList objectAtIndex:indexPath.row];
+        
     }
 }
 
