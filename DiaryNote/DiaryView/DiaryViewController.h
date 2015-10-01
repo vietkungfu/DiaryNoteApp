@@ -10,9 +10,12 @@
 #import <Photos/Photos.h>
 #import "Diary.h"
 
-@interface DiaryViewController : UIViewController
+@interface DiaryViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (copy, nonatomic) NSMutableDictionary * diaryItem;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
+@property (strong, nonatomic) IBOutlet UIView *view;
 
 @end

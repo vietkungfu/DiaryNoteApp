@@ -154,10 +154,10 @@
             </objects>
             <point key="canvasLocation" x="1712.5" y="256.5"/>
         </scene>
-        <!--日付-->
+        <!--Diary View Controller -->
         <scene sceneID="jf6-fl-5XJ">
             <objects>
-                <viewController id="ZTO-FO-eAF" customClass="DiaryViewController" sceneMemberID="viewController">
+                <viewController id="ZTO-FO-eAF" userLabel="Diary View Controller " customClass="DiaryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AAc-xW-0cz"/>
                         <viewControllerLayoutGuide type="bottom" id="CVT-ch-nid"/>
@@ -179,19 +179,25 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="Qlg-V0-0HC">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="lOi-Qy-36k">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="62" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mf4-SK-a2M">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jd-Mc-Iu2">
                                                     <rect key="frame" x="0.0" y="0.0" width="62" height="66"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="6jd-Mc-Iu2" secondAttribute="trailing" id="7gG-Y0-4e2"/>
+                                            <constraint firstItem="6jd-Mc-Iu2" firstAttribute="top" secondItem="lOi-Qy-36k" secondAttribute="topMargin" id="9xu-LE-56C"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="6jd-Mc-Iu2" secondAttribute="bottom" id="DSA-It-jQz"/>
+                                            <constraint firstItem="6jd-Mc-Iu2" firstAttribute="leading" secondItem="lOi-Qy-36k" secondAttribute="leadingMargin" id="YyG-A5-ur1"/>
+                                        </constraints>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -207,7 +213,8 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="collectionView" destination="6Fm-bn-gMR" id="TjW-fW-o3k"/>
+                        <outlet property="collectionView" destination="6Fm-bn-gMR" id="Ceg-qe-im7"/>
+                        <outlet property="view" destination="wL6-HV-CyZ" id="c9i-hE-yE5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puq-Sn-JWC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -271,6 +278,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="TbN-Nc-AXV"/>
+        <segue reference="CTs-n8-W5L"/>
     </inferredMetricsTieBreakers>
 </document>

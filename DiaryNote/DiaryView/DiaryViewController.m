@@ -27,9 +27,25 @@
 
 static CGSize AssetGridThumbnailSize;
 
+- (void)awakeFromNib
+{
+    self.imageManager = [[PHCachingImageManager alloc] init];
+    //[self resetCachedAssets];
+    [self.imageManager stopCachingImagesForAllAssets];
+    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+}
+
+- (void)dealloc
+{
+    [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,6 +55,11 @@ static CGSize AssetGridThumbnailSize;
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    CGFloat scale = [UIScreen mainScreen].scale;
+    CGSize cellSize = ((UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout).itemSize;
+    AssetGridThumbnailSize = CGSizeMake(cellSize.width * scale, cellSize.height * scale);
+    
     [self showImage];
 }
 
@@ -114,7 +135,7 @@ static CGSize AssetGridThumbnailSize;
 
 - (void) showImage{
     //PHFetchResult *topLevelUserCollections = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];
-    PHFetchResult *topLevelUserCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    PHFetchResult *topLevelUserCollections = [PHAsset fetchAssetsWithOptions:nil];
     //PHFetchOptions *options = [[PHFetchOptions alloc] init];
     //options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
     
@@ -132,7 +153,7 @@ static CGSize AssetGridThumbnailSize;
 
 #pragma mark - UICollectionView
 
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     return self.assets.count;
 }
@@ -142,12 +163,25 @@ static CGSize AssetGridThumbnailSize;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     PhotoViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
-    
+//    UICollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
     // Increment the cell's tag
     NSInteger currentTag = cell.tag + 1;
     cell.tag = currentTag;
     
     PHAsset *asset = self.assets[indexPath.item];
+    
+//    //ALAsset *asset = self.assets[indexPath.row];
+//    CGImageRef thumbnailImageRef = [asset ];
+//    UIImage *thumbnail = [UIImage imageWithCGImage:thumbnailImageRef];
+//    
+//    // apply the image to the cell
+//    UIImageView *imageView = (UIImageView *)[cell viewWithTag:kImageViewTag];
+//    imageView.image = thumbnail;
+    
+    //__block UIImage * image = [[UIImage alloc] init];
+    
+    //typeof(self) wself = self;
+    
     [self.imageManager requestImageForAsset:asset
                                  targetSize:AssetGridThumbnailSize
                                 contentMode:PHImageContentModeAspectFill
@@ -157,9 +191,11 @@ static CGSize AssetGridThumbnailSize;
                                   // Only update the thumbnail if the cell tag hasn't changed. Otherwise, the cell has been re-used.
                                   if (cell.tag == currentTag) {
                                       cell.thumbnailImage = result;
+                                      //wself.imageView.image = result;
                                   }
-                                  
                               }];
+    
+    //self.imageView.image = image;
     
     return cell;
 }
