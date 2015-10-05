@@ -10,8 +10,11 @@
 
 @interface DiarySpec : NSObject
 
+@property (strong, nonatomic) NSString * itemKey;
 @property (strong, nonatomic) NSString * title;
 @property (strong, nonatomic) NSDate * date;
 @property (strong, nonatomic) NSString * note;
+
+- (id) initWithItemKey: (NSString *) itemKey;
 
 @end

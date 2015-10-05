@@ -29,7 +29,10 @@ extern NSString * const DATE_FORMAT;
 extern NSString * const DATE_VIEW_FORMAT;
 
 extern NSString * const CREATE_DIARY_ACTION;
+extern NSString * const EDIT_DIARY_ACTION;
 extern NSString * const VIEW_DIARY_ACTION;
+extern NSString * const CANCEL_DIARY_ACTION;
+extern NSString * const SAVE_DIARY_ACTION;
 
 extern NSString * const MODE_EDIT;
 extern NSString * const MODE_CREATE;

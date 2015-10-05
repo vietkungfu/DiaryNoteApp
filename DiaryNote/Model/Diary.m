@@ -92,6 +92,7 @@
         
         [self.DiaryDic setObject:_dic forKey:_key];
         [self writeToFile];
+        scopeDiaryDic = nil;
     }@catch (NSException *e){
         NSLog(@"Exception: %@", e);
         returnValue = false;
@@ -126,16 +127,22 @@
     return returnValue;
 }
 
-- (BOOL) isDateExisted:(NSDate *)_date{
+- (BOOL) isDateExisted:(NSDate *)_date withOriginDate: (NSDate *) _originDate{
     
     BOOL returnValue = false;
+    
+    NSString * _stringDate = [self generateDateValue:_date];
+    NSString * _stringOriginDate = [self generateDateValue:_originDate];
     
     for (NSString * key in self.DiaryDic){
         
         NSMutableDictionary * dic = self.DiaryDic[key];
         NSDate * date = [dic objectForKey:DATE_TAG];
         
-        if([[self generateDateValue:date] isEqualToString:[self generateDateValue:_date]])
+        NSString * stringDate = [self generateDateValue:date];
+        
+        if([stringDate isEqualToString:_stringDate]
+        && ![stringDate isEqualToString:_stringOriginDate])
         {
             returnValue = true;
             break;
@@ -146,6 +153,9 @@
 }
 
 - (NSString *) generateDateValue:(NSDate *) _date{
+    
+    if(_date == nil){return nil;}
+    
     NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:DATE_FORMAT];
     
@@ -155,7 +165,7 @@
 - (NSString *) generateViewDateValue:(NSDate *) _date{
     NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:DATE_VIEW_FORMAT];
-    
+
     return [dateFormat stringFromDate:_date];
 }
 

@@ -53,7 +53,7 @@
     
     NSString * cellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier] ;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
@@ -61,6 +61,7 @@
     
     NSMutableDictionary* diaryData = [diary.DiaryList objectAtIndex:indexPath.row];
     cell.textLabel.text = [diaryData objectForKey:TITLE_TAG];
+    
     cell.detailTextLabel.text = [self.diary generateViewDateValue:[diaryData objectForKey:DATE_TAG]];
 
     cell.textLabel.textColor = [UIColor blackColor];
@@ -87,36 +88,37 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         viewController.diaryItem = [self.diary.DiaryList objectAtIndex:indexPath.row];
-        
+        viewController.diary = self.diary;
     }
 }
 
 
 - (IBAction) unwindToList:(UIStoryboardSegue *)segue{
     
-    
-    PresentViewController * source = [segue sourceViewController];
-    
-    DiarySpec *diarySpec = source.diaryReturn;
-    
-    if(diarySpec != nil){
+    if([[segue identifier] isEqualToString:SAVE_DIARY_ACTION])
+    {
+        PresentViewController * source = [segue sourceViewController];
         
-        NSMutableDictionary* diaryData = [NSMutableDictionary dictionary];
+        DiarySpec *diarySpec = source.diaryReturn;
         
-        NSString * itemKey = [NSString stringWithFormat:@"%d",self.diary.MaxIndex + 1];
-        
-        [diaryData setObject:itemKey forKey:ITEM_KEY_TAG];
-        [diaryData setObject:diarySpec.title forKey:TITLE_TAG];
-        [diaryData setObject:diarySpec.date forKey:DATE_TAG];
-        [diaryData setObject:diarySpec.note forKey:DESCRIPTION_TAG];
-
-        [self.diary
-         addDictionaryIntoDiaryDic:diaryData
-         withKey:itemKey];
-        
-        [self.tableView reloadData];
+        if(diarySpec != nil){
+            
+            NSMutableDictionary* diaryData = [NSMutableDictionary dictionary];
+            
+            NSString * itemKey = [NSString stringWithFormat:@"%d",self.diary.MaxIndex + 1];
+            
+            [diaryData setObject:itemKey forKey:ITEM_KEY_TAG];
+            [diaryData setObject:diarySpec.title forKey:TITLE_TAG];
+            [diaryData setObject:diarySpec.date forKey:DATE_TAG];
+            [diaryData setObject:diarySpec.note forKey:DESCRIPTION_TAG];
+            
+            [self.diary
+             addDictionaryIntoDiaryDic:diaryData
+             withKey:itemKey];
+            
+            [self.tableView reloadData];
+        }
     }
-    
 }
 
 @end

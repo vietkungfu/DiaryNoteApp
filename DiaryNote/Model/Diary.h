@@ -19,7 +19,7 @@
 - (BOOL) updateDictionaryForKeyOfDiaryDic:(NSMutableDictionary *) _dic withKey:(NSString *) _key;
 - (BOOL) addDictionaryIntoDiaryDic:(NSMutableDictionary *) _dic withKey:(NSString *) _key;
 - (BOOL) removeDictionaryForKeyOfDiaryDic:(NSString *)_key;
-- (BOOL) isDateExisted:(NSDate *)_date;
+- (BOOL) isDateExisted:(NSDate *)_date withOriginDate: (NSDate *) _originDate;
 - (NSString *) generateDateValue:(NSDate *) _date;
 - (NSString *) generateViewDateValue:(NSDate *) _date;
 

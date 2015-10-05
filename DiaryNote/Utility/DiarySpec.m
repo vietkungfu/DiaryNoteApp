@@ -11,4 +11,11 @@
 @implementation DiarySpec
 
 @synthesize title, date, note;
+
+- (id) initWithItemKey: (NSString *) itemKey{
+    self = [self init];
+    self.itemKey = itemKey;
+    return self;
+}
+
 @end

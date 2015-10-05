@@ -15,7 +15,7 @@
 
 @property (copy, nonatomic) NSString *viewMode;
 @property (strong, nonatomic) Diary * diary;
-
+//@property (copy, nonatomic) NSMutableDictionary * diaryItem;
 @property (weak, nonatomic) IBOutlet UITextField *diaryTitle;
 @property (weak, nonatomic) IBOutlet UIDatePicker *diaryDate;
 @property (weak, nonatomic) IBOutlet UITextView *diaryNote;

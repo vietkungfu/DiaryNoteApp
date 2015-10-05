@@ -19,6 +19,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if([self.viewMode isEqualToString:MODE_EDIT]){
+        self.diaryTitle.text = self.diaryReturn.title;
+        self.diaryDate.date = self.diaryReturn.date;
+        self.diaryNote.text = self.diaryReturn.note;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,10 +43,18 @@
     }
 
     if(self.diaryDate != nil){
-        self.diaryReturn = [[DiarySpec alloc] init];
-        [self.diaryReturn setTitle:self.diaryTitle.text];
-        [self.diaryReturn setDate:self.diaryDate.date];
-        [self.diaryReturn setNote:self.diaryNote.text];
+        if([self.viewMode isEqualToString:MODE_CREATE])
+        {
+            self.diaryReturn = [[DiarySpec alloc] initWithItemKey:nil];
+            [self.diaryReturn setTitle:self.diaryTitle.text];
+            [self.diaryReturn setDate:self.diaryDate.date];
+            [self.diaryReturn setNote:self.diaryNote.text];
+            
+        }else if([self.viewMode isEqualToString:MODE_EDIT]){
+            [self.diaryReturn setTitle:self.diaryTitle.text];
+            [self.diaryReturn setDate:self.diaryDate.date];
+            [self.diaryReturn setNote:self.diaryNote.text];
+        }
     }
 }
 
@@ -49,7 +62,10 @@
 {
     if(sender == self.finishButton)
     {
-        if( self.diaryDate == nil || [self.diary isDateExisted:self.diaryDate.date])
+        if( self.diaryDate == nil
+           || [self.diary
+               isDateExisted:self.diaryDate.date
+               withOriginDate:self.diaryReturn == nil? nil : self.diaryReturn.date])
         {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message"
                                                             message:@"Date is existed !! Please input again..."

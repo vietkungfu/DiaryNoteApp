@@ -12,10 +12,12 @@
 
 @interface DiaryViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (copy, nonatomic) NSMutableDictionary * diaryItem;
+@property (strong, nonatomic) Diary *diary;
+@property (strong, nonatomic) NSMutableDictionary * diaryItem;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UITextView *note;
 
-@property (strong, nonatomic) IBOutlet UIView *view;
+- (IBAction)unwindToList:(UIStoryboardSegue *) segue;
 
 @end

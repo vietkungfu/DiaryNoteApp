@@ -7,12 +7,13 @@
 //
 
 #import "DiaryViewController.h"
+#import "PresentViewController.h"
 #import "Constant.h"
 #import "PhotoViewCell.h"
 
 @import Photos;
 
-@interface DiaryViewController ()<PHPhotoLibraryChangeObserver>
+@interface DiaryViewController ()
 
 @property (nonatomic, strong) PHFetchResult *assetResult;
 @property (nonatomic, strong) PHAssetCollection *assetCollect;
@@ -32,12 +33,12 @@ static CGSize AssetGridThumbnailSize;
     self.imageManager = [[PHCachingImageManager alloc] init];
     //[self resetCachedAssets];
     [self.imageManager stopCachingImagesForAllAssets];
-    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+    //[[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 }
 
 - (void)dealloc
 {
-    [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
+    //[[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -46,6 +47,14 @@ static CGSize AssetGridThumbnailSize;
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    [self.collectionView flashScrollIndicators];
+//    [self.collectionView setShowsHorizontalScrollIndicator:YES];
+//    [self.collectionView setShowsVerticalScrollIndicator:YES];
+    self.navigationItem.title = [self.diaryItem objectForKey:TITLE_TAG];
+    
+    self.navigationItem.prompt = [self generateViewDateValue:[self.diaryItem objectForKey:DATE_TAG]];
+    self.note.text = [self.diaryItem objectForKey:DESCRIPTION_TAG];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,16 +77,62 @@ static CGSize AssetGridThumbnailSize;
     [self.collectionView reloadData];
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if([[segue identifier] isEqualToString:EDIT_DIARY_ACTION]){
+        PresentViewController *viewController = (PresentViewController *)[[segue destinationViewController] topViewController];
+        [viewController setDiary:self.diary];
+        //viewController.diaryItem = self.diaryItem;
+        
+        DiarySpec * diarySpec = [[DiarySpec alloc] initWithItemKey:[self.diaryItem objectForKey:ITEM_KEY_TAG]];
+        
+        diarySpec.title = [self.diaryItem objectForKey:TITLE_TAG];
+        diarySpec.date = [self.diaryItem objectForKey:DATE_TAG];
+        diarySpec.note = [self.diaryItem objectForKey:DESCRIPTION_TAG];
+        
+        viewController.diaryReturn = diarySpec;
+        
+        viewController.viewMode = MODE_EDIT;
+    }
 }
-*/
 
+- (IBAction)unwindToList:(UIStoryboardSegue *) segue{
+    
+    if([[segue identifier] isEqualToString:SAVE_DIARY_ACTION])
+    {
+        
+        PresentViewController * source = [segue sourceViewController];
+        
+        DiarySpec *diarySpec = source.diaryReturn;
+        
+        if(diarySpec != nil){
+            
+            NSMutableDictionary* diaryData = [NSMutableDictionary dictionary];
+            
+            NSString * itemKey = diarySpec.itemKey;
+            
+            [diaryData setObject:itemKey forKey:ITEM_KEY_TAG];
+            [diaryData setObject:diarySpec.title forKey:TITLE_TAG];
+            [diaryData setObject:diarySpec.date forKey:DATE_TAG];
+            [diaryData setObject:diarySpec.note forKey:DESCRIPTION_TAG];
+            
+            [self.diary
+             addDictionaryIntoDiaryDic:diaryData
+             withKey:itemKey];
+            
+            self.diaryItem[TITLE_TAG] = diarySpec.title;
+            self.diaryItem[DATE_TAG] = diarySpec.date;
+            self.diaryItem[DESCRIPTION_TAG] = diarySpec.note;
+            
+            [self viewDidLoad];
+            [self viewWillAppear:YES];
+            [self viewDidAppear:YES];
+        }
+    }
+    
+}
 - (void)readImage {
     // PHAssetCollection を取得します
     PHAssetCollection * myAlbum = [self getMyAlbum];
@@ -134,14 +189,14 @@ static CGSize AssetGridThumbnailSize;
 }
 
 - (void) showImage{
-    //PHFetchResult *topLevelUserCollections = [PHCollectionList fetchTopLevelUserCollectionsWithOptions:nil];
-    PHFetchResult *topLevelUserCollections = [PHAsset fetchAssetsWithOptions:nil];
+
+    PHFetchResult *results = [PHAsset fetchAssetsWithOptions:nil];
     //PHFetchOptions *options = [[PHFetchOptions alloc] init];
     //options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
     
     self.assets = [NSMutableArray array];
     
-    for(PHAsset * asset in topLevelUserCollections)
+    for(PHAsset * asset in results)
     {
         if ([[self generateViewDateValue: asset.creationDate]
              isEqualToString:[self generateViewDateValue:[self.diaryItem objectForKey:DATE_TAG]]])
@@ -154,33 +209,23 @@ static CGSize AssetGridThumbnailSize;
 #pragma mark - UICollectionView
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    NSInteger count = self.assets.count;
     
-    return self.assets.count;
+    collectionView.contentSize = CGSizeMake(AssetGridThumbnailSize.height * count,AssetGridThumbnailSize.width);
+    return count;
 }
 
 #define kImageViewTag 1 // the image view inside the collection view cell prototype is tagged with "1"
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    PhotoViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
-//    UICollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
+    PhotoViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
+    
     // Increment the cell's tag
     NSInteger currentTag = cell.tag + 1;
     cell.tag = currentTag;
     
     PHAsset *asset = self.assets[indexPath.item];
-    
-//    //ALAsset *asset = self.assets[indexPath.row];
-//    CGImageRef thumbnailImageRef = [asset ];
-//    UIImage *thumbnail = [UIImage imageWithCGImage:thumbnailImageRef];
-//    
-//    // apply the image to the cell
-//    UIImageView *imageView = (UIImageView *)[cell viewWithTag:kImageViewTag];
-//    imageView.image = thumbnail;
-    
-    //__block UIImage * image = [[UIImage alloc] init];
-    
-    //typeof(self) wself = self;
     
     [self.imageManager requestImageForAsset:asset
                                  targetSize:AssetGridThumbnailSize
@@ -191,14 +236,38 @@ static CGSize AssetGridThumbnailSize;
                                   // Only update the thumbnail if the cell tag hasn't changed. Otherwise, the cell has been re-used.
                                   if (cell.tag == currentTag) {
                                       cell.thumbnailImage = result;
-                                      //wself.imageView.image = result;
                                   }
                               }];
-    
-    //self.imageView.image = image;
+    //[cell setSelected:true];
+    //[cv selectItemAtIndexPath:indexPath animated:true scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
     
     return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    PHAsset *asset = self.assets[indexPath.item];
+    
+    [self.imageManager requestImageForAsset:asset
+                                 targetSize:AssetGridThumbnailSize
+                                contentMode:PHImageContentModeAspectFill
+                                    options:nil
+                              resultHandler:^(UIImage *result, NSDictionary *info) {
+                                  
+                                  // Only update the thumbnail if the cell tag hasn't changed. Otherwise, the cell has been re-used.
+                                  //if (cell.tag == currentTag) {
+                                      self.imageView.image = result;
+                                  //}
+                              }];
+    PhotoViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor greenColor];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+    PhotoViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor whiteColor];
+        self.imageView.image = nil;
+}
+
 
 #pragma mark - PHPhotoLibraryChangeObserver
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C2043" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oRP-dJ-liq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oRP-dJ-liq">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -14,11 +14,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="gUi-X1-YuT">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="oSu-EG-J5a" detailTextLabel="AyM-va-aq2" style="IBUITableViewCellStyleValue1" id="gUi-X1-YuT">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gUi-X1-YuT" id="aPB-fr-63w">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oSu-EG-J5a">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AyM-va-aq2">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="tNF-rp-TIb" kind="show" identifier="viewDiary" id="6TR-bf-JqA"/>
@@ -132,12 +146,12 @@
                     <navigationItem key="navigationItem" id="h7i-1S-9xo">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="XUL-yz-svI">
                             <connections>
-                                <segue destination="hZI-Pa-yZA" kind="unwind" unwindAction="unwindToList:" id="x9o-Kj-8Tc"/>
+                                <segue destination="hZI-Pa-yZA" kind="unwind" identifier="Cancel" unwindAction="unwindToList:" id="x9o-Kj-8Tc"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="thx-nr-wOc">
                             <connections>
-                                <segue destination="hZI-Pa-yZA" kind="unwind" unwindAction="unwindToList:" id="5xJ-3P-OJI"/>
+                                <segue destination="hZI-Pa-yZA" kind="unwind" identifier="Save" unwindAction="unwindToList:" id="5xJ-3P-OJI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -166,11 +180,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xzx-Oj-Fll">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xzx-Oj-Fll">
                                 <rect key="frame" x="0.0" y="94" width="375" height="184"/>
                             </imageView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Fm-bn-gMR">
-                                <rect key="frame" x="0.0" y="278" width="375" height="68"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Fm-bn-gMR">
+                                <rect key="frame" x="16" y="278" width="343" height="68"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hzE-at-yc9">
                                     <size key="itemSize" width="62" height="66"/>
@@ -179,7 +193,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="lOi-Qy-36k">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="lOi-Qy-36k" customClass="PhotoViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -198,28 +212,58 @@
                                             <constraint firstAttribute="bottomMargin" secondItem="6jd-Mc-Iu2" secondAttribute="bottom" id="DSA-It-jQz"/>
                                             <constraint firstItem="6jd-Mc-Iu2" firstAttribute="leading" secondItem="lOi-Qy-36k" secondAttribute="leadingMargin" id="YyG-A5-ur1"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="6jd-Mc-Iu2" id="gtz-L0-cjc"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="本文" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8m-uv-IJA">
+                                <rect key="frame" x="16" y="366" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30S-bU-ke4">
+                                <rect key="frame" x="16" y="395" width="343" height="252"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="30S-bU-ke4" firstAttribute="leading" secondItem="wL6-HV-CyZ" secondAttribute="leadingMargin" id="3P8-Py-FZk"/>
+                            <constraint firstItem="6Fm-bn-gMR" firstAttribute="top" secondItem="Xzx-Oj-Fll" secondAttribute="bottom" id="6Wc-Dc-G0c"/>
+                            <constraint firstItem="6Fm-bn-gMR" firstAttribute="trailing" secondItem="wL6-HV-CyZ" secondAttribute="trailingMargin" id="DsE-df-8RK"/>
+                            <constraint firstItem="CVT-ch-nid" firstAttribute="top" secondItem="6Fm-bn-gMR" secondAttribute="bottom" constant="321" id="JrE-cU-PSx"/>
+                            <constraint firstItem="6Fm-bn-gMR" firstAttribute="trailing" secondItem="wL6-HV-CyZ" secondAttribute="trailingMargin" id="RC6-Sa-pDt"/>
+                            <constraint firstItem="30S-bU-ke4" firstAttribute="top" secondItem="r8m-uv-IJA" secondAttribute="bottom" constant="8" id="VHX-XG-v6D"/>
+                            <constraint firstItem="30S-bU-ke4" firstAttribute="trailing" secondItem="wL6-HV-CyZ" secondAttribute="trailingMargin" id="d0g-BN-lO0"/>
+                            <constraint firstItem="CVT-ch-nid" firstAttribute="top" secondItem="30S-bU-ke4" secondAttribute="bottom" constant="20" id="fQ3-Jf-PXc"/>
+                            <constraint firstItem="6Fm-bn-gMR" firstAttribute="top" secondItem="Xzx-Oj-Fll" secondAttribute="bottom" id="qVt-4W-NfQ"/>
+                            <constraint firstItem="6Fm-bn-gMR" firstAttribute="leading" secondItem="wL6-HV-CyZ" secondAttribute="leadingMargin" id="qgE-xX-dXg"/>
+                            <constraint firstItem="6Fm-bn-gMR" firstAttribute="leading" secondItem="wL6-HV-CyZ" secondAttribute="leadingMargin" id="ria-qV-s87"/>
+                            <constraint firstItem="CVT-ch-nid" firstAttribute="top" secondItem="6Fm-bn-gMR" secondAttribute="bottom" constant="321" id="yzw-KH-AFB"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="日付" prompt="タイトル" id="wO3-TY-TpZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="u4N-ai-CyB">
                             <connections>
-                                <segue destination="iPw-YI-2ks" kind="presentation" id="TbN-Nc-AXV"/>
+                                <segue destination="iPw-YI-2ks" kind="presentation" identifier="editDiary" id="TbN-Nc-AXV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="collectionView" destination="6Fm-bn-gMR" id="Ceg-qe-im7"/>
-                        <outlet property="view" destination="wL6-HV-CyZ" id="c9i-hE-yE5"/>
+                        <outlet property="imageView" destination="Xzx-Oj-Fll" id="rWQ-WO-trQ"/>
+                        <outlet property="note" destination="30S-bU-ke4" id="2z8-yw-1xt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="puq-Sn-JWC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="732.5" y="1090.5"/>
+            <point key="canvasLocation" x="680.5" y="1090.5"/>
         </scene>
         <!--Root Navigation Controller-->
         <scene sceneID="3zQ-En-3LP">
