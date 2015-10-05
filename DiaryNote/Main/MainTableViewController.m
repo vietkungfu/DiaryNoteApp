@@ -29,7 +29,8 @@
     [super viewDidLoad];
     
     diary = [[Diary alloc] init];
-
+    
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,6 +69,33 @@
     
     return cell;
 }
+
+-(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSMutableDictionary * curDic = [self.diary.DiaryList objectAtIndex:indexPath.row];
+    
+        if([self.diary removeDictionaryForKeyOfDiaryDic:[curDic objectForKey:ITEM_KEY_TAG]])
+    {
+        //[diaryList removeObjectAtIndex:indexPath.row];
+        [tableView reloadData];
+    }
+}
+
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    
+    [super setEditing:editing animated:animated];
+    
+    if(editing) {
+        //Do something for edit mode
+        [self.tableView setEditing:editing animated:YES];
+    }
+    
+    else {
+        //Do something for non-edit mode
+        [self.tableView setEditing:editing animated:NO];
+    }
+}
+
 
 #pragma mark - Navigation
 

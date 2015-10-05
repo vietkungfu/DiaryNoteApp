@@ -74,6 +74,8 @@
                 [self.DiaryDic removeObjectForKey:key];
             }
         }
+        [self writeToFile];
+        scopeDiaryDic = nil;
     }
     @catch (NSException *e) {
         NSLog(@"Exception : %@" ,e);

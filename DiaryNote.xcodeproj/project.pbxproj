@@ -191,6 +191,8 @@
 		3FD34CE71BB8C94700E38E24 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3FD34CEC1BB8D24B00E38E24 /* DiarySpec.h */,
+				3FD34CED1BB8D24B00E38E24 /* DiarySpec.m */,
 				3F3C12C61BBBAF8E00146FB0 /* Diary.h */,
 				3F3C12C71BBBAF8E00146FB0 /* Diary.m */,
 				3F3C12C81BBBAF8E00146FB0 /* PhotoViewCell.h */,
@@ -204,8 +206,6 @@
 			children = (
 				3FD34CE91BB8C9EA00E38E24 /* Constant.h */,
 				3FD34CEA1BB8C9EA00E38E24 /* Constant.m */,
-				3FD34CEC1BB8D24B00E38E24 /* DiarySpec.h */,
-				3FD34CED1BB8D24B00E38E24 /* DiarySpec.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
